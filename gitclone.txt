@@ -1,0 +1,15 @@
+    @RequestMapping("/clone")
+    public String clone() {
+        String result;
+        try {
+            Git.cloneRepository()
+                    .setURI("https://github.com/smltq/blog.git")
+                    .setDirectory(new File("/blog"))
+                    .call();
+            result = "克隆成功了!";
+        } catch (GitAPIException e) {
+            result = e.getMessage();
+            e.printStackTrace();
+        }
+        return result;
+    }
